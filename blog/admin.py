@@ -1,6 +1,4 @@
-from cgitb import text
-from msilib.schema import Class
-from xml.etree.ElementTree import Comment
+#from xml.etree.ElementTree import Comment
 from django.contrib import admin
 
 # Register your models here.
@@ -34,10 +32,7 @@ class PostTopic(admin.ModelAdmin):
         'slug'
     )
 
-class CommentInline(admin.StackedInline):
-    model = Comment
-    readonly_fields = ('name','text','email')
-    extra = 0
+
 
 
 class PostComment(admin.ModelAdmin):
