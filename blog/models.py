@@ -40,11 +40,10 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)  # Sets on create
     updated = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.text
-    
     class Meta:
         """Sort by the `created` field. The `-` prefix
          specifies to order in descending/reverse order.
         Otherwise, it will be in ascending order."""
         ordering = ['-created']
+    def __str__(self):
+        return self.text

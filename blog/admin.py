@@ -3,6 +3,11 @@ from django.contrib import admin
 
 # Register your models here.
 from . import models
+from .models import Comment
+
+class CommentInline(admin.StackedInline):
+    model = Comment
+    extra = 0
 
 class PostAdmin(admin.ModelAdmin):
     """Display Fields"""
@@ -31,9 +36,6 @@ class PostTopic(admin.ModelAdmin):
         'name',
         'slug'
     )
-
-
-
 
 class PostComment(admin.ModelAdmin):
     list_display = (
