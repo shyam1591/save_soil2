@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 # Create your models here.
 class Post(models.Model):
     """
@@ -22,14 +22,13 @@ class Post(models.Model):
         ordering = ['created']
 
     def __str__(self):
-        return self.title
+        return self.title.__str__()
 
 class Topic(models.Model):
-    name = models.CharField(max_length=255, default="Soil Importance")
+    name = models.TextField(default="Soil Importance")
     slug = models.SlugField(default = "soil-importance")
-
     def __str__(self):
-        return self.name
+        return self.name.__str__()
 
 class Comment(models.Model):
     post= models.ForeignKey(Post,on_delete=models.CASCADE,related_name='comments')
@@ -46,4 +45,9 @@ class Comment(models.Model):
         Otherwise, it will be in ascending order."""
         ordering = ['-created']
     def __str__(self):
-        return self.text
+        return self.text.__str__()
+    
+class PostQuerySet(models.QuerySet):
+    def get_authors(self):
+        User = get_user_model()
+        return User.objects.filter(blog_posts__in=self).distinct()
