@@ -1,9 +1,8 @@
 """RENDER HTML REQUEST"""
 from django.shortcuts import render
-from django.db.models import Count
 from . import models
 #Import the exception,
-from django.core.exceptions import ObjectDoesNotExist
+
 
 # def home(request):
 #     """
