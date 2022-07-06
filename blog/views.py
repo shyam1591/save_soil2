@@ -23,11 +23,8 @@ def home(request):
     # Get last 3 posts
     latest_posts = models.Post.objects.order_by('-published')[:3]
     latest_top = models.Topic.objects.order_by()
-    comment_cont = models.Topic.objects.all().annotate(post_count=Count('Post'))
     #authors = models.Post.objects.get_authors()
     # Add as context variable "latest_posts"
-    for x in comment_cont:
-        print(comment_cont.posts_count)
     context = {'latest_posts': latest_posts,
                'Topics': latest_top,}
     return render(request, 'blog/home.html', context)
