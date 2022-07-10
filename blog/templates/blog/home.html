@@ -9,20 +9,9 @@
   {% for post in latest_posts %}
   <article>
     <h2>{{ post.title }}</h2>
-    
+
     {{ post.content|linebreaks }}
   </article>
   {% endfor %}
 </section>
-
-
-
-
-<!--{% for data in TP%}
-    {{data}}
-{% endfor %}-->
-
-<!--{% for data in TP%} {{data}}<br />-->
-<!--{% endfor %}-->
-
 {%endblock%}

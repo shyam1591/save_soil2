@@ -16,8 +16,6 @@
       <br />
       <p>A blog about spreading awareness on saving soil</p>
     </header>
-
-    <!-- Top navigation -->
     <nav id="top-nav">
       <ul>
         <li><a href="#">Home</a></li>
@@ -38,16 +36,12 @@
           <h3>Topics</h3>
           <ul>
             {% for top in Topics %}
-                <li>{{top.name}}</li>
+            <li>{{top.name}}</li>
             {% endfor %}
           </ul>
-          
         </section>
       </aside>
     </main>
-    <footer id="site-footer">
-      <!-- Print copyright with the current year -->
-      Copyright &copy;{% now 'Y' %}
-    </footer>
+    <footer id="site-footer">Copyright &copy;{% now 'Y' %}</footer>
   </body>
 </html>

@@ -5,11 +5,14 @@ from django.contrib import admin
 from . import models
 from .models import Comment
 
+
 class CommentInline(admin.StackedInline):
     model = Comment
     extra = 0
 
+
 class PostAdmin(admin.ModelAdmin):
+
     """Display Fields"""
     list_display = (
         'title',
@@ -17,7 +20,7 @@ class PostAdmin(admin.ModelAdmin):
         'updated',
         'author'
     )
-
+    prepopulated_fields = {"slug": ("title",)}
     search_fields = (
         'title',
         'author__username',
@@ -30,12 +33,16 @@ class PostAdmin(admin.ModelAdmin):
         'topic',
     )
 
+
 class PostTopic(admin.ModelAdmin):
+
     """Display Fields"""
     list_display = (
         'name',
         'slug'
     )
+    prepopulated_fields = {"slug": ("name",)}
+
 
 class PostComment(admin.ModelAdmin):
     list_display = (
@@ -44,8 +51,8 @@ class PostComment(admin.ModelAdmin):
         'email',
         'text',
         'approved',
-        #'created',
-        #'updated',
+        # 'created',
+        # 'updated',
     )
 
     search_fields = (
@@ -58,7 +65,7 @@ class PostComment(admin.ModelAdmin):
         'updated',
     )
 
-    def comment_approve(self,query):
+    def comment_approve(self, query):
         query.update(True)
 
 
