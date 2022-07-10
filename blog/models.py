@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth import get_user_model
 # Create your models here.
@@ -53,7 +54,7 @@ class Comment(models.Model):
         """Sort by the `created` field. The `-` prefix
          specifies to order in descending/reverse order.
         Otherwise, it will be in ascending order."""
-        ordering = ['-created']
+        ordering = ['created']
 
     def __str__(self):
         return self.text.__str__()
@@ -63,3 +64,6 @@ class PostQuerySet(models.QuerySet):
     def get_authors(self):
         User = get_user_model()
         return User.objects.filter(blog_posts__in=self).distinct()
+
+    def topic_name(self):
+        return self.filter()
